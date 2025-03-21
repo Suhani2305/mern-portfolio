@@ -8,18 +8,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        sync: false
+        sync: "postgresql://neondb_owner:npg_Y4tic2DSKljq@ep-wispy-wildflower-a5i4lebr-pooler.us-east-2.aws.neon.tech/neondb?sslmode=require"
       - key: JWT_SECRET
         sync: false
-      - key: EMAIL_USER
-        sync: false
-      - key: EMAIL_APP_PASSWORD
-        sync: false
-      - key: TWILIO_ACCOUNT_SID
-        sync: false
-      - key: TWILIO_AUTH_TOKEN
-        sync: false
-      - key: TWILIO_WHATSAPP_FROM
-        sync: false
-      - key: TWILIO_WHATSAPP_TO
-        sync: false 
+        
