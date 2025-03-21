@@ -10,7 +10,7 @@
     "dev:server": "tsx watch server/index.ts",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "build:client": "vite build",
-    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist/server --external:@/* --external:@shared/* --external:express --external:dotenv --external:ws --external:nanoid --external:zod --external:drizzle-orm --external:@neondatabase/serverless --external:express-session --external:passport --external:passport-local --external:connect-pg-simple --external:memorystore --external:../shared/*",
+    "build:server": "esbuild server/*.ts --platform=node --packages=external --bundle --format=esm --outdir=dist/server --external:express --external:dotenv --external:ws --external:nanoid --external:zod --external:drizzle-orm --external:@neondatabase/serverless --external:express-session --external:passport --external:passport-local --external:connect-pg-simple --external:memorystore",
     "build": "npm run build:client && npm run build:server",
     "start": "node dist/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
