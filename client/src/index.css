@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #13002A;
+  background-image: 
+  radial-gradient(circle at 10% 20%, rgba(90, 30, 150, 0.2) 0%, transparent 20%),
+  radial-gradient(circle at 80% 70%, rgba(100, 30, 150, 0.15) 0%, transparent 40%),
+  radial-gradient(circle at 40% 90%, rgba(70, 20, 120, 0.1) 0%, transparent 30%);
+  min-height: 100vh;
+  color:WHITE;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Starry background */
+.stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  animation-name: twinkle;
+  animation-duration: 5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 0.8; transform: scale(1.1); }
+  100% { opacity: 0.2; transform: scale(0.8); }
+}
+
+.shooting-star {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0) 100%);
+  animation-name: shoot;
+  animation-duration: 3s;
+  animation-timing-function: ease-out;
+  animation-iteration-count: infinite;
+  opacity: 0;
+  transform: rotate(-45deg);
+}
+
+@keyframes shoot {
+  0% {
+    opacity: 0;
+    transform: translateX(0) translateY(0) rotate(-45deg);
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+    transform: translateX(200px) translateY(200px) rotate(-45deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(200px) translateY(200px) rotate(-45deg);
+  }
+}
+
+/* Purple glow effects */
+.glow-purple {
+  filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.7));
+  transition: all 0.3s ease;
+}
+
+.glow-purple:hover {
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.9));
+  transform: translateY(-5px);
+}
+
+/* Orbit animation for planets */
+.orbit {
+  animation: orbit 20s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+/* Floating animation for UI elements */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Space theme elements */
+.planet {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #9d4edd 0%, #5e0dad 70%, #3c096c 100%);
+  box-shadow: 0 0 30px rgba(157, 78, 221, 0.5);
+  position: relative;
+}
+
+.planet::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2);
+  opacity: 0.5;
+}
+
+.moon {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #e1e1e1 0%, #b5b5b5 70%, #909090 100%);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Neon text effect */
+.neon-text {
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9d4edd, 0 0 20px #9d4edd, 0 0 25px #9d4edd;
+  /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff69b4, 0 0 20px #ff69b4, 0 0 25px #ff69b4; */
+  animation: neon-pulse 2s infinite alternate;
+}
+
+@keyframes neon-pulse {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9d4edd, 0 0 20px #9d4edd;
+    /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff69b4, 0 0 20px #ff69b4; */
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9d4edd, 0 0 20px #9d4edd, 0 0 30px #9d4edd, 0 0 40px #9d4edd;
+    /* text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4, 0 0 40px #ff69b4; */
+  }
+}
+
+/* Skills progress bars */
+.skill-progress {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #9d4edd 0%, #7b2cbf 50%, #5a189a 100%);
+  /* background: linear-gradient(90deg, #ff69b4 0%, #ff8cc7 50%, #ffb6c1 100%); */
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-progress::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30px;
+  background: rgba(255, 255, 255, 0.3);
+  /* background: rgba(255, 255, 255, 0.5); */
+  animation: skill-shine 3s infinite linear;
+}
+
+@keyframes skill-shine {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(400%);
+  }
+}
+
+/* Gradient button effects */
+.gradient-button {
+  background: linear-gradient(90deg, #7b2cbf 0%, #c77dff 100%);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+
+.gradient-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #c77dff 0%, #7b2cbf 100%);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.gradient-button:hover::before {
+  left: 0;
+}
+
+.gradient-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(123, 44, 191, 0.4);
+}
+
+/* Container styles */
+.space-container {
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(5px);
+  background: rgba(25, 1, 47, 0.5);
+  border: 1px solid rgba(123, 44, 191, 0.2);
+  /* background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 105, 180, 0.3); */
+  border-radius: 16px;
+  /* box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2); */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
