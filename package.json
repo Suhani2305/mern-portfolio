@@ -10,7 +10,7 @@
     "dev:server": "tsx watch server/index.ts",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "build:client": "vite build",
-    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist/server",
+    "build:server": "esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist/server --external:@/* --external:@shared/*",
     "build": "npm run build:client && npm run build:server",
     "start": "node dist/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
