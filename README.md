@@ -126,4 +126,14 @@ Required environment variables:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Additional Projects
+
+- **SecureFile**: A highly secure and user-friendly file management system designed for privacy, accessibility, and seamless collaboration. Built using TypeScript, React, and Express. [GitHub Link](https://github.com/Suhani2305/SecureFile)
+
+- **EchoRead**: A modern reading platform with features like user authentication, cloud sync, and AI-powered recommendations. [GitHub Link](https://github.com/Suhani2305/EchoRead)
+
+- **AirIndexAnalysis**: A project focused on analyzing air quality indices. [GitHub Link](https://github.com/Suhani2305/AirIndexAnalysis)
+
+- **Plate2Share**: A project connecting NGOs with hotels and restaurants to manage and share excess food, reducing waste. [GitHub Link](https://github.com/Suhani2305/Plate2Share) 

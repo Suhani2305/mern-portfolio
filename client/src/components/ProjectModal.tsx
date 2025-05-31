@@ -11,7 +11,7 @@ type Project = {
   id: number;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   category: 'data-science' | 'mern-stack';
   demoLink: string;
   githubLink: string;
@@ -30,6 +30,11 @@ interface ProjectModalProps {
 
 const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [project]);
 
   // Handle outside click
   useEffect(() => {
@@ -148,6 +153,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
   if (!project) return null;
 
   const fullProject = getFullProjectData(project);
+  const images = fullProject.images || [];
 
   return (
     <AnimatePresence>
@@ -178,15 +184,36 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
               <X className="w-5 h-5" />
             </button>
 
-            {/* Project Image with gradient overlay */}
-            <div className="relative h-64 md:h-80 w-full overflow-hidden">
-              <img 
-                src={fullProject.image} 
-                alt={fullProject.title} 
-                className="w-full h-full object-cover"
-              />
+            {/* Project Images Carousel */}
+            <div className="relative h-64 md:h-80 w-full overflow-hidden group">
+              {images.length > 0 && (
+                <img 
+                  src={images[currentImageIndex]}
+                  alt={fullProject.title}
+                  className="w-full h-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-purple-900/90 via-purple-900/50 to-transparent"></div>
-              
+              {/* Carousel Navigation */}
+              {images.length > 1 && (
+                <>
+                  <button
+                    onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <ArrowRight className="h-6 w-6 rotate-180" />
+                  </button>
+                  <button
+                    onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <ArrowRight className="h-6 w-6" />
+                  </button>
+                  <div className="absolute bottom-2 right-2 bg-black/50 text-white text-xs px-2 py-1 rounded-full">
+                    {currentImageIndex + 1} / {images.length}
+                  </div>
+                </>
+              )}
               {/* Title overlay */}
               <div className="absolute bottom-0 left-0 w-full p-8">
                 <div className="flex items-center space-x-3 mb-3">
@@ -197,12 +224,10 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                   }`}>
                     {fullProject.category === 'data-science' ? 'Data Science' : 'MERN Stack'}
                   </span>
-                  
                   <div className="flex items-center text-gray-300 text-sm">
                     <Calendar className="w-4 h-4 mr-1" />
                     <span>{fullProject.yearCompleted}</span>
                   </div>
-                  
                   <div className="flex items-center text-gray-300 text-sm">
                     <Users className="w-4 h-4 mr-1" />
                     <span>Team of {fullProject.teamSize}</span>
